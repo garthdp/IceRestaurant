@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "746937964033",
+    "project_id": "icerestaurant-12e52",
+    "firebase_url": "https://icerestaurant-12e52-default-rtdb.europe-west1.firebasedatabase.app/",
+    "storage_bucket": "icerestaurant-12e52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746937964033:android:a79c54e5fb7f010c589200",
+        "android_client_info": {
+          "package_name": "com.example.icerestaurant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEevvGAcxTGeaI7OCewaRPfhzucwNimyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
