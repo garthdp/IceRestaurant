@@ -75,9 +75,5 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
-        listView.setOnClickListener{
-            val intent = Intent(this, item_delete::class.java)
-            startActivity(intent)
-        }
     }
 }
