@@ -13,6 +13,9 @@
         android:theme="@style/Theme.IceRestaurant"
         tools:targetApi="31">
         <activity
+            android:name=".item_delete"
+            android:exported="false" />
+        <activity
             android:name=".order"
             android:exported="false" />
         <activity

@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,14 +18,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.firebase.database.getValue
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var rootNode: FirebaseDatabase
+    private lateinit var userReference : DatabaseReference
+    private lateinit var listView : ListView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
-        val TAG = "Firebase"
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -35,48 +41,39 @@ class MainActivity : AppCompatActivity() {
         val txtNameInput : EditText = findViewById(R.id.txtNameInput)
         val txtFoodInput : EditText = findViewById(R.id.txtFoodInput)
         val btnAdd : Button = findViewById(R.id.btnAdd)
-        val btnDelete : Button = findViewById(R.id.btnDelete)
-        val database = Firebase.database
-        val myRef1 = database.getReference("Name")
-        val myRef2 = database.getReference("Food")
-        val txtShowName : TextView = findViewById(R.id.txtShowName)
-        val txtShowFood : TextView = findViewById(R.id.txtShowFood)
 
-        btnDelete.setOnClickListener{
-            myRef1.setValue("")
-            myRef2.setValue("")
-        }
+        listView = findViewById(R.id.lsOutput)
+        rootNode = FirebaseDatabase.getInstance()
+        userReference = rootNode.getReference("users")
+
         btnAdd.setOnClickListener{
-            myRef1.setValue(txtNameInput.text.toString())
-            myRef2.setValue(txtFoodInput.text.toString())
+            val dc = DataClass(txtNameInput.text.toString(), txtFoodInput.text.toString())
+            userReference.child(dc.name).setValue(dc)
         }
-        myRef1.addValueEventListener(object: ValueEventListener {
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val value = snapshot.getValue<String>()
-                txtShowName.text = value
-                Log.d(TAG, "Value is: " + value)
+        val list = ArrayList<String>()
+        val adapter = ArrayAdapter<String>(this, R.layout.listitem, list)
+
+        listView.adapter = adapter
+
+        userReference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot)
+            {
+                list.clear()
+                for (snapshot1 in snapshot.children){
+                    val dc2  = snapshot1.getValue(DataClass::class.java)
+                    val txt  = "Name: ${dc2?.name}, Food: ${dc2?.food}"
+                    txt?.let { list.add(it) }
+                }
+                adapter.notifyDataSetChanged()
             }
+            override fun onCancelled(error:DatabaseError)
+            {
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "Failed to read value.", error.toException())
-            }
-        })
-        myRef2.addValueEventListener(object: ValueEventListener {
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val value = snapshot.getValue<String>()
-                txtShowFood.text = value
-                Log.d(TAG, "Value is: " + value)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
+        listView.setOnClickListener{
+
+        }
     }
 }

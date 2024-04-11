@@ -11,42 +11,21 @@
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="27dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="75dp"
         android:text="Name:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtNameInput"
-        app:layout_constraintEnd_toStartOf="@+id/txtNameInput" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="Favorite food"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtFoodInput"
-        app:layout_constraintEnd_toStartOf="@+id/txtFoodInput"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/txtNameInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="67dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="@+id/txtFoodInput"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtFoodInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="19dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtFood"
-        app:layout_constraintTop_toBottomOf="@+id/txtNameInput" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="39dp"
+        android:text="Favorite food:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -57,49 +36,38 @@
         app:layout_constraintStart_toStartOf="@+id/txtFoodInput"
         app:layout_constraintTop_toBottomOf="@+id/txtFoodInput" />
 
-    <TextView
-        android:id="@+id/txtnameName"
+    <EditText
+        android:id="@+id/txtNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Users name:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtShowName"
-        app:layout_constraintEnd_toEndOf="@+id/txtFavFood" />
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/txtFoodInput"
+        app:layout_constraintStart_toEndOf="@+id/txtFood" />
 
-    <TextView
-        android:id="@+id/txtFavFood"
+    <EditText
+        android:id="@+id/txtFoodInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:text="Favorite Food:"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtShowFood"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/txtFood"
+        app:layout_constraintStart_toStartOf="@+id/txtNameInput"
+        app:layout_constraintTop_toTopOf="@+id/txtFood" />
 
-    <TextView
-        android:id="@+id/txtShowName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
-        app:layout_constraintEnd_toStartOf="@+id/txtShowFood"
-        app:layout_constraintStart_toStartOf="@+id/txtShowFood"
+    <ListView
+        android:id="@+id/lsOutput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
-
-    <TextView
-        android:id="@+id/txtShowFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="22dp"
-        app:layout_constraintStart_toEndOf="@+id/txtFavFood"
-        app:layout_constraintTop_toBottomOf="@+id/txtShowName" />
-
-    <Button
-        android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="79dp"
-        android:layout_marginTop="12dp"
-        android:text="Delete"
-        app:layout_constraintStart_toStartOf="@+id/txtFavFood"
-        app:layout_constraintTop_toBottomOf="@+id/txtFavFood" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
