@@ -2,6 +2,7 @@ package com.example.icerestaurant
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -24,6 +25,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.firebase.database.getValue
 
+var userName : String = ""
+var userFood : String = ""
 class MainActivity : AppCompatActivity() {
     private lateinit var rootNode: FirebaseDatabase
     private lateinit var userReference : DatabaseReference
@@ -73,7 +76,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
         listView.setOnClickListener{
-
+            val intent = Intent(this, item_delete::class.java)
+            startActivity(intent)
         }
     }
 }
